@@ -1,9 +1,12 @@
 import React from 'react'
 import styles from './styles'
 import { connect } from 'react-redux'
+import { confirmMovie } from '../redux/moviesReducer'
 
 const MovieConfirm = props => {
+  const { title, rating, poster } = props;
   const confirmMovie = () => {
+    props.confirmMovie({ title, poster, rating })
     props.history.push('/list')
   }
 
@@ -31,6 +34,10 @@ const mapStateToProps = reduxState => {
   return {
     reduxState
   }
+}
+
+const mapDispatchToProps = {
+  confirmMovie
 }
 
 export default connect(mapStateToProps)(MovieConfirm)
